@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Single Page Website</title>
+  <meta name="description" content="A simple single page website for GitHub Pages deployment" />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --primary: #38bdf8;
+      --primary-dark: #0ea5e9;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      --radius: 16px;
+      --max-width: 1100px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #020617, #0f172a, #1e293b);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 90%;
+      max-width: var(--max-width);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      padding: 60px 0;
+    }
+
+    .hero-content {
+      width: 100%;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #03111c;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      max-width: 650px;
+      margin: 0 auto 50px;
+    }
+
+    .about,
+    .services,
+    .contact {
+      background: rgba(255, 255, 255, 0.03);
+      margin: 20px 0;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .about-content {
+      text-align: center;
+      max-width: 800px;
+      margin: auto;
+      color: var(--muted);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 30px 25px;
+      border-radius: var(--radius);
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .contact form {
+      max-width: 700px;
+      margin: auto;
+      display: grid;
+      gap: 20px;
+    }
+
+    .contact input,
+    .contact textarea {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .contact textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .contact button {
+      border: none;
+      cursor: pointer;
+    }
+
+    #formMessage {
+      text-align: center;
+      color: var(--primary);
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 0;
+      color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #0f172a;
+        position: absolute;
+        top: 70px;
+        right: 5%;
+        width: 220px;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container navbar">
+      <div class="logo">MySite</div>
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <h1>Build Your Modern Website</h1>
+      <p>
+        This is a clean single page website built with only HTML, CSS, and JavaScript.
+        You can directly upload it to GitHub and deploy it with GitHub Pages.
+      </p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <section class="about container" id="about">
+    <h2 class="section-title">About</h2>
+    <p class="section-subtitle">A simple and responsive one-page layout for portfolio, profile, or business use.</p>
+    <div class="about-content">
+      <p>
+        You can edit this template for your personal brand, company profile, product landing page,
+        or project showcase. Everything is inside one file, so it is easy to manage and deploy.
+      </p>
+    </div>
+  </section>
+
+  <section class="services container" id="services">
+    <h2 class="section-title">Services</h2>
+    <p class="section-subtitle">Example content blocks for your main features or services.</p>
+
+    <div class="service-grid">
+      <div class="card">
+        <h3>Web Design</h3>
+        <p>Create attractive and responsive layouts for desktop and mobile users.</p>
+      </div>
+      <div class="card">
+        <h3>Development</h3>
+        <p>Build fast and simple static websites using HTML, CSS, and JavaScript.</p>
+      </div>
+      <div class="card">
+        <h3>Deployment</h3>
+        <p>Publish your website for free using GitHub Pages in just a few steps.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact container" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-subtitle">This form is demo-only and shows a message using JavaScript.</p>
+
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+      <p id="formMessage"></p>
+    </form>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 MySite. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    const contactForm = document.getElementById("contactForm");
+    const formMessage = document.getElementById("formMessage");
+
+    contactForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+
+      formMessage.textContent = `Thank you, ${name}! Your message has been received.`;
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
